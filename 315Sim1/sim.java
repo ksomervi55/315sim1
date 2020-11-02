@@ -11,38 +11,47 @@ public class sim{
   public static void main(String args[]){
 
 
-    Process[] procList;
+    Process[] procList = new Product[10];
 
 
     Scanner s = new Scanner(System.in);
     System.out.print("Enter File name");
     String fileName = s.nextLine();
       File f = new File(fileName);
-      reader(f);
+      procList = reader(f);
+      for(int i = 0; i < procList.length; i++){
+        Process p = procList[i];
+        p.toString();
+      }
 
 
   }
   public static Process[] reader(File f){
-    int burst[] = {0};
-    int wait[] = {0};
+
     Process[] procList = new Process[80];
 
     try{
-
+      int burst[] = new int[10];
+      int wait[] = new int[10];
       Scanner fileReader = new Scanner(f);
       lq1quant = fileReader.nextInt();
       lq2quant = fileReader.nextInt();
-
-      Process p = new Process();
+      System.out.println(lq1quant);
+      System.out.println(lq2quant);
+      Process p;
       int j = 0;
 
-      while(fileReader.hasNextLine()){
-        p.setProcId(fileReader.nextLine());
-        p.setPriority(fileReader.nextLine());
+      while(fileReader.hasNext()){
+        p = new Process();
+        p.setProcId(fileReader.next());
+        System.out.println("PID: " + p.getProcId());
+        p.setPriority(fileReader.next());
+        System.out.println("priority: " + p.getPriority());
         p.setArrivalTime(fileReader.nextInt());
+        System.out.println("Arrival: "+ p.getArrivalTime());
         int i = 0;
 
-        while(fileReader.hasNextInt()){
+        while(fileReader.hasNextInt() && fileReader.hasNext()){
           burst[i] = fileReader.nextInt();
           int temp = fileReader.nextInt();
           if(temp == -1){
@@ -57,6 +66,8 @@ public class sim{
         p.setBurstLen(burst);
         p.setWaitTime(wait);
         procList[j] = p;
+        //System.out.println(procList[j].toString());
+        j++;
       }
       fileReader.close();
     }catch(FileNotFoundException e){

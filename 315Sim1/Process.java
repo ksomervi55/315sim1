@@ -9,10 +9,10 @@ public class Process{
 
   public Process(String pid, String priority, int arrival, int[] burstLen, int[] waitTime){
     procId = pid;
-    priority = this.priority;
+    this.priority = priority;
     arrivalTime = arrival;
-    burstLen = this.burstLen;
-    waitTime = this.waitTime;
+    this.burstLen = burstLen;
+    this.waitTime = waitTime;
   }
   public String getProcId(){
     return procId;
@@ -33,16 +33,26 @@ public class Process{
     procId = pid;
   }
   public void setPriority(String priority){
-    priority = this.priority;
+    this.priority = priority;
   }
   public void setArrivalTime(int arrival){
     arrivalTime = arrival;
   }
   public void setBurstLen(int[] burstLen){
-    burstLen = this.burstLen;
+    this.burstLen = burstLen;
   }
   public void setWaitTime(int[] waitTime){
-    waitTime = this.waitTime;
+    this.waitTime = waitTime;
   }
-
+  public String printArrays(){
+    String s = "";
+    for(int i = 0; i < burstLen.length; i++){
+      s += "\nBurst len: " + burstLen[i];
+      s += "\nwait time: " + waitTime[i];
+    }
+    return s;
+  }
+  public String toString(){
+    return "\nPID: " + procId + "\n Priority: " + priority + "\n Arrival Time: " + printArrays();
+  }
 }
