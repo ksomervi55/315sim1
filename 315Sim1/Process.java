@@ -47,12 +47,14 @@ public class Process{
   public String printArrays(){
     String s = "";
     for(int i = 0; i < burstLen.length; i++){
-      s += "\nBurst len: " + burstLen[i];
-      s += "\nwait time: " + waitTime[i];
+      if(burstLen[i] != 0 || waitTime[i] != 0){
+        s += "\nBurst len: " + burstLen[i];
+        s += "\nwait time: " + waitTime[i];
+      }
     }
     return s;
   }
   public String toString(){
-    return "\nPID: " + procId + "\n Priority: " + priority + "\n Arrival Time: " + printArrays();
+    return "\nPID: " + procId + "\nPriority: " + priority + "\nArrival Time: " + printArrays();
   }
 }

@@ -11,7 +11,7 @@ public class sim{
   public static void main(String args[]){
 
 
-    Process[] procList = new Product[10];
+    LinkedList<Process> procList = new LinkedList<Process>();
 
 
     Scanner s = new Scanner(System.in);
@@ -19,16 +19,17 @@ public class sim{
     String fileName = s.nextLine();
       File f = new File(fileName);
       procList = reader(f);
-      for(int i = 0; i < procList.length; i++){
-        Process p = procList[i];
-        p.toString();
+      for(int i = 0; i < procList.size(); i++){
+        if(procList.get(i) != null){
+          System.out.println(procList.get(i).toString());
+        }
       }
 
 
   }
-  public static Process[] reader(File f){
+  public static LinkedList<Process> reader(File f){
 
-    Process[] procList = new Process[80];
+    LinkedList<Process> procList = new LinkedList<Process>();
 
     try{
       int burst[] = new int[10];
@@ -65,7 +66,7 @@ public class sim{
         }
         p.setBurstLen(burst);
         p.setWaitTime(wait);
-        procList[j] = p;
+        procList.add(p);
         //System.out.println(procList[j].toString());
         j++;
       }
